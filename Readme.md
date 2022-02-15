@@ -18,6 +18,10 @@ If anything of the below task is unclear or you struggle with some aspects of it
 
 ![js](./img/65ad0m.jpg)
 
+## How to setup your repository
+For setting up your project for this challenge there are 2 ways:
+- You can simply fork this repository and add your code in here. Afterwards just createa PR and send us the link.
+- If you do not feel confortable to do this in a public repository, you can [just duplicate this repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) and send us an invitation to it.
 ## Frontend part
 The web frontend can be created with any framework you like or no framework at all. Choose what works best for you in this scenario. At parcelLab we're using React, but this isn't a requirement.
 
@@ -81,12 +85,11 @@ Each row will contain the following properties:
 - `status_detail` - a more human readable detailed version of the checkpoint's status
 
 ## What you will need
-
 For setting up the website / frontend you can just set up a standard React/Vue/Svelte... project with the transpiler of your choice or don't use any framework at all. Choose the tool you like. (Hint - we are fans of functional programming and react hooks 😏)
 
 For the backend you can also use a programming language or framework of your choice. At parcelLab we're mostly using Node.js and Python, but ultimately use what you're most comfortable with. 
 
-If you're done with this challenge, simply send us a copy of the zipped folder containing your work or a link to a repository that we can access. 
+If you're done with this challenge, simply send us a link to a repository that we can access - or create a PR to this repository. 
 
 ## In the end you should have
 - [ ]  a website (frontend)
