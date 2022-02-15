@@ -12,16 +12,34 @@ In this scenario, you are developer at parcelLab and you are tasked with buildin
 ## Our Expectations
 You might be wondering after reading the below scenario, how much effort and time we expect you to invest in this task. We know that you likely have a job, a life, further open job applications and other things that require some of your valuable time. Therefore you should **not** **spend more than** **3-4 hours** on this task. 
 
+Just for you to have a understanding about the scope we expect, here a list for each level you might be applying for:
+
+### Junior Developer:
+- your application works without the need of modifications
+- you use Python or Javascript for the task
+- someone looking at the code knows what you tried to accomplish because you stick with the "Clean Code" principles
+
+### Midlevel Developer:
+- all of the above plus:
+- functional programming is endorsed
+- the code base is "Clean Code" by the book
+- your Backend is able to handle a bigger number of requests (by e.g. using a proper Database)
+
+### Senior Developer:
+- all of the above plus:
+- show us your TDD knowledge
+- follow the SOLID principles
+
 The most important thing to us is to see **how you approach the below problem and how you end up designing the backend and frontend** for it. The outcome of this task will then be used in the follow-up interview, in which we will review the code with you together and have a more in-depth discussion about your design decisions and their possible issues and improvement possibilities. Most important of all, **do not stress it**. You can only achieve a certain amount within the mentioned time frame. **Your code will likely not be perfect**, but as long as it's runnable and is able to support the basic user flow, it will be enough for us to have a technical conversation with you about it.
 
 If anything of the below task is unclear or you struggle with some aspects of it, please do not hesitate to reach out to us. It's very important to us to keep on improving our interview task and experience, so any feedback is highly appreciated.
-
-![js](./img/65ad0m.jpg)
 
 ## How to setup your repository
 For setting up your project for this challenge there are 2 ways:
 - You can simply fork this repository and add your code in here. Afterwards just createa PR and send us the link.
 - If you do not feel confortable to do this in a public repository, you can [just duplicate this repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) and send us an invitation to it.
+
+![js](./img/65ad0m.jpg)
 ## Frontend part
 The web frontend can be created with any framework you like or no framework at all. Choose what works best for you in this scenario. At parcelLab we're using React, but this isn't a requirement.
 
