@@ -6,16 +6,22 @@ import { OrderDetailsScreen } from "./screens/OrderDetailsScreen";
 
 function App() {
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<SignInScreen />} />
-				<Route path="/orders" element={<OrdersScreen />} />
-				<Route
-					path="/order/:orderId"
-					element={<OrderDetailsScreen />}
-				/>
-			</Routes>
-		</Router>
+		<div className="h-screen flex items-center justify-center">
+			<Router>
+				<Routes>
+					<Route path="/" element={<SignInScreen />} />
+					<Route path="/orders" element={<OrdersScreen />} />
+					<Route
+						path="/order/:orderId"
+						element={<OrderDetailsScreen />}
+					/>
+					<Route
+						path="*"
+						element={<p>There's nothing here: 404!</p>}
+					/>
+				</Routes>
+			</Router>
+		</div>
 	);
 }
 

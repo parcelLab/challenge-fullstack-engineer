@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
-import { axios } from "../axios";
+import { axiosInstance } from "../axiosInstance";
+import { Order } from "../types";
 
 interface Jwt {
 	access_token: string;
@@ -13,12 +14,14 @@ interface ApiResponse<T> {
 export const useApi = () => {
 	const signin = async (email: string): Promise<ApiResponse<Jwt>> => {
 		try {
-			const response = await axios.post("/auth/signin", {
+			const response = await axiosInstance.post("/auth/signin", {
 				email,
 			});
 			const data = response.data as Jwt;
 
-			axios.defaults.headers.common["Authorization"] = data.access_token;
+			axiosInstance.defaults.headers.common[
+				"Authorization"
+			] = `Bearer ${data.access_token}`;
 
 			return { data };
 		} catch (error) {
@@ -28,7 +31,22 @@ export const useApi = () => {
 		}
 	};
 
+	const getOrders = async (): Promise<ApiResponse<Order[]>> => {
+		try {
+			const response = await axiosInstance.get("/tracking");
+
+			const data = response.data;
+
+			return { data: data.trackings };
+		} catch (error) {
+			return {
+				error: (error as AxiosError).message,
+			};
+		}
+	};
+
 	return {
 		signin,
+		getOrders,
 	};
 };
