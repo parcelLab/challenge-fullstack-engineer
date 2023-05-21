@@ -1,3 +1,0 @@
-[submodule "quest-server"]
-	path = quest-server
-	url = https://github.com/RussellSnyder/challenge-fullstack-engineer.git
