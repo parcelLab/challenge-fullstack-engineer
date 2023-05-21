@@ -1,0 +1,3 @@
+[submodule "quest-server"]
+	path = quest-server
+	url = git@github.com:RussellSnyder/parcellab-server.git

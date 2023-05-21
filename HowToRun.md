@@ -2,7 +2,9 @@
 
 ## Prerequisites
 
-Requires Node 18+ and Docker to be installed.
+Requires Git, Node 18+ and Docker to be installed.
+
+## Clone the Repo
 
 ## Server
 
