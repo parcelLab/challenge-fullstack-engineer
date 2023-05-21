@@ -38,7 +38,7 @@ export const OrdersScreen = () => {
 			}
 		}
 		fetchAndSetOrders();
-	}, [getOrders, orders]);
+	}, [getOrders, kickout, orders]);
 
 	if (screenState === ScreenState.Loading) {
 		return <p className="text-3xl">Loading, please wait</p>;

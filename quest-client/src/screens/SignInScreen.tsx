@@ -32,6 +32,11 @@ function SignInScreen() {
 		const result = await signin(email.value);
 
 		if (result.error) {
+			console.log(result.error);
+			if (result.error.code === "ERR_BAD_REQUEST") {
+				setSignInError("Invalid Email");
+				return;
+			}
 			setSignInError(result.error.message);
 		}
 		if (result.data) {
@@ -65,13 +70,19 @@ function SignInScreen() {
 						Please provide a valid email
 					</Form.Message>
 					{signInError ? (
-						<Form.Message className="text-red-800">
+						<Form.Message
+							className="text-red-800"
+							id="signInServerError"
+						>
 							{signInError}
 						</Form.Message>
 					) : null}
 				</Form.Field>
 				<Form.Submit asChild>
-					<button className="mt-4 p-4 rounded bg-blue-400 w-full">
+					<button
+						className="mt-4 p-4 rounded bg-blue-400 w-full"
+						type="submit"
+					>
 						Sign in
 					</button>
 				</Form.Submit>
