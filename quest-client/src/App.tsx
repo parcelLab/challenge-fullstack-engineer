@@ -12,7 +12,7 @@ function App() {
 					<Route path="/" element={<SignInScreen />} />
 					<Route path="/orders" element={<OrdersScreen />} />
 					<Route
-						path="/order/:orderId"
+						path="/order/:orderNumber"
 						element={<OrderDetailsScreen />}
 					/>
 					<Route

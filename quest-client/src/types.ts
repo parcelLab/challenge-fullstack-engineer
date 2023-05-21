@@ -22,3 +22,16 @@ export interface Order {
 	tracking_number: string;
 	zip_code: string;
 }
+export interface Checkpoint {
+	id: number;
+	location: string;
+	timestamp: string;
+	status: string;
+	status_text: string;
+	status_details: string;
+	tracking_number: string;
+}
+export interface OrderDetails {
+	order: Order;
+	checkpoints: Checkpoint[];
+}

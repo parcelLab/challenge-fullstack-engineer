@@ -1,16 +1,6 @@
 import { Order } from "../types";
 import { Link } from "react-router-dom";
-
-interface OrderEntryProps {
-	label: string;
-	value: string;
-}
-const OrderEntry = ({ label, value }: OrderEntryProps) => (
-	<li>
-		<h6>{label}</h6>
-		<strong>{value}</strong>
-	</li>
-);
+import { OrderEntry } from "./OrderEntry";
 
 interface Props {
 	order: Order;

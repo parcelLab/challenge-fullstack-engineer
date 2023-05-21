@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { axiosInstance } from "../axiosInstance";
-import { Order } from "../types";
+import { Order, OrderDetails } from "../types";
 
 interface Jwt {
 	access_token: string;
@@ -33,11 +33,27 @@ export const useApi = () => {
 
 	const getOrders = async (): Promise<ApiResponse<Order[]>> => {
 		try {
-			const response = await axiosInstance.get("/tracking");
+			const response = await axiosInstance.get("/orders");
 
 			const data = response.data;
 
-			return { data: data.trackings };
+			return { data: data.orders };
+		} catch (error) {
+			return {
+				error: (error as AxiosError).message,
+			};
+		}
+	};
+
+	const getOrderDetails = async (
+		orderNumber: string
+	): Promise<ApiResponse<OrderDetails>> => {
+		try {
+			const response = await axiosInstance.get(`/orders/${orderNumber}`);
+
+			const data = response.data;
+
+			return { data };
 		} catch (error) {
 			return {
 				error: (error as AxiosError).message,
@@ -48,5 +64,6 @@ export const useApi = () => {
 	return {
 		signin,
 		getOrders,
+		getOrderDetails,
 	};
 };
