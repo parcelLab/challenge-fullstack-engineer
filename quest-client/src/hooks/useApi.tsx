@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { axiosInstance } from "../axiosInstance";
-import { Order, OrderDetails } from "../apiTypes";
+import { Order, OrderDetails, OrderWithArticles } from "../apiTypes";
 import { JWT_LOCAL_STORAGE_KEY } from "../contants";
 
 interface Jwt {
@@ -8,7 +8,7 @@ interface Jwt {
 }
 
 interface ApiResponse<T> {
-	error?: string;
+	error?: AxiosError;
 	data?: T;
 }
 
@@ -21,7 +21,10 @@ export const useApi = () => {
 			const data = response.data as Jwt;
 
 			// save jtw to local storage
-			localStorage.setItem(JWT_LOCAL_STORAGE_KEY, data.access_token);
+			await localStorage.setItem(
+				JWT_LOCAL_STORAGE_KEY,
+				data.access_token
+			);
 
 			axiosInstance.defaults.headers.common[
 				"Authorization"
@@ -29,23 +32,19 @@ export const useApi = () => {
 
 			return { data };
 		} catch (error) {
-			return {
-				error: (error as AxiosError).message,
-			};
+			return { error: error as AxiosError };
 		}
 	};
 
-	const getOrders = async (): Promise<ApiResponse<Order[]>> => {
+	const getOrders = async (): Promise<ApiResponse<OrderWithArticles[]>> => {
 		try {
 			const response = await axiosInstance.get("/orders");
 
 			const data = response.data;
 
-			return { data: data.orders };
+			return { data };
 		} catch (error) {
-			return {
-				error: (error as AxiosError).message,
-			};
+			return { error: error as AxiosError };
 		}
 	};
 
@@ -59,9 +58,7 @@ export const useApi = () => {
 
 			return { data };
 		} catch (error) {
-			return {
-				error: (error as AxiosError).message,
-			};
+			return { error: error as AxiosError };
 		}
 	};
 

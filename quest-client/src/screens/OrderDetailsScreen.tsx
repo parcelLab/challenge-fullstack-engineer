@@ -6,8 +6,11 @@ import { ScreenState } from "../types";
 import { CheckpointTimeline } from "../components/CheckpointTimeline";
 import { OrderEntry } from "../components/OrderEntry";
 import { OrderDetails } from "../apiTypes";
+import { useAuthorizedRoute } from "../hooks/useAuthorizedRoute";
 
 export const OrderDetailsScreen = () => {
+	const { kickout } = useAuthorizedRoute();
+
 	const { orderNumber } = useParams();
 	const [screenState, setScreenState] = useState<ScreenState>(
 		ScreenState.Loading
@@ -26,17 +29,19 @@ export const OrderDetailsScreen = () => {
 			const response = await getOrderDetails(orderNumber as string);
 
 			if (response.data) {
-				console.log(response);
 				setOrderDetails(response.data);
 				setScreenState(ScreenState.DataReady);
 			}
+
+			if (response.error?.code === "ERR_BAD_REQUEST") kickout();
+
 			if (response.error) {
-				setError(response.error);
+				setError(response.error.message);
 				setScreenState(ScreenState.Error);
 			}
 		}
 		fetchAndSetOrders();
-	}, [getOrderDetails, orderDetails, orderNumber]);
+	}, [getOrderDetails, kickout, orderDetails, orderNumber]);
 
 	if (screenState === ScreenState.Loading) {
 		return <p className="text-3xl">Loading, please wait</p>;
@@ -50,9 +55,19 @@ export const OrderDetailsScreen = () => {
 		const { order, checkpoints } = orderDetails;
 		return (
 			<Card title="Order Details">
-				<h2 className="text-lg mb-2 text-center">
-					{order.product_name}
-				</h2>
+				<div className="grid gap-4 grid-cols-2 mb-2">
+					{order.articles.map((article) => (
+						<div key={article.articleNumber}>
+							<img
+								src={article.articleImageUrl}
+								alt={article.product_name}
+							/>
+							<h4 className="text-center">
+								{article.product_name}
+							</h4>
+						</div>
+					))}
+				</div>
 				<img
 					className="d-block mx-auto mb-4"
 					src={order.articleImageUrl}
@@ -62,11 +77,16 @@ export const OrderDetailsScreen = () => {
 						label="Order Number"
 						value={order.order_number}
 					/>
-					<OrderEntry label="Courier" value={order.courier} />
-					<OrderEntry label="Product" value={order.product_name} />
 					<OrderEntry
 						label="Delivery Address"
 						value={`${order.street}\n${order.zip_code} ${order.city}`}
+					/>
+					<OrderEntry label="Email" value={order.email} />
+					<OrderEntry label="Customer Id" value={order.customerId} />
+					<OrderEntry label="Courier" value={order.courier} />
+					<OrderEntry
+						label="Tracking Code"
+						value={order.tracking_number}
 					/>
 				</ul>
 

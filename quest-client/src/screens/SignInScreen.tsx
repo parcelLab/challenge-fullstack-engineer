@@ -1,7 +1,7 @@
 import * as Form from "@radix-ui/react-form";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useApi } from "../hooks/useApi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { Card } from "../components/Card";
 
 interface FormData {
@@ -9,6 +9,15 @@ interface FormData {
 }
 
 function SignInScreen() {
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	useEffect(() => {
+		if (!searchParams.get("kickout")) return;
+		setTimeout(() => {
+			setSearchParams();
+		}, 4000);
+	}, [searchParams, setSearchParams]);
+
 	const { signin } = useApi();
 	const navigate = useNavigate();
 
@@ -19,22 +28,24 @@ function SignInScreen() {
 
 		const { email } = event.target as typeof event.target & FormData;
 
-		console.log({ email: email.value });
-
 		// post to backend
 		const result = await signin(email.value);
 
 		if (result.error) {
-			setSignInError(result.error);
+			setSignInError(result.error.message);
 		}
 		if (result.data) {
 			navigate("/orders");
-			console.log(result.data);
 		}
 	};
 	return (
 		<Card title="Sign In">
 			<Form.Root className="FormRoot" onSubmit={handleSubmit}>
+				{searchParams.get("kickout") ? (
+					<p className="text-red-500 mb-8 text-center">
+						You need to log in to access that!
+					</p>
+				) : null}
 				<Form.Field className="FormField" name="email">
 					<div className="flex">
 						<Form.Label className="FormLabel">Email</Form.Label>

@@ -20,7 +20,10 @@ export const CheckpointTimeline = ({ checkpoints }: Props) => (
 			).format(date);
 
 			return (
-				<li className="flex justify-between items-center">
+				<li
+					className="flex justify-between items-center"
+					key={checkpoint.status}
+				>
 					<span>{formattedDate}</span>
 					<span className="font-bold">{checkpoint.status}</span>
 				</li>

@@ -25,13 +25,21 @@ export interface Checkpoint {
 	tracking_number: string;
 }
 export interface OrderDetails {
-	order: Order;
+	order: OrderWithArticles;
 	checkpoints: Checkpoint[];
 }
+
+export interface OrderArticle {
+	articleNumber: string;
+	articleImageUrl: string;
+	quantity: number;
+	product_name: string;
+}
+
 export interface OrderWithArticles
-	extends Omit<Order, "articleNo" & "articleImageUrl"> {
-	articles: {
-		articleNumber: string;
-		articleImageUrl: string;
-	}[];
+	extends Omit<
+		Order,
+		"articleNo" & "articleImageUrl" & "quantity" & "product_name"
+	> {
+	articles: OrderArticle[];
 }

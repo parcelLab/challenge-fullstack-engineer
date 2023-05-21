@@ -3,16 +3,19 @@ import { useApi } from "../hooks/useApi";
 import { ScreenState } from "../types";
 import { Card } from "../components/Card";
 import { OrderPreview } from "../components/OrderPreview";
-import { Order } from "../apiTypes";
+import { OrderWithArticles } from "../apiTypes";
+import { useAuthorizedRoute } from "../hooks/useAuthorizedRoute";
 
 export const OrdersScreen = () => {
+	const { kickout } = useAuthorizedRoute();
+
 	const [screenState, setScreenState] = useState<ScreenState>(
 		ScreenState.Loading
 	);
 
 	const [error, setError] = useState<string>();
 
-	const [orders, setOrders] = useState<Order[]>();
+	const [orders, setOrders] = useState<OrderWithArticles[]>();
 
 	const { getOrders } = useApi();
 
@@ -23,12 +26,14 @@ export const OrdersScreen = () => {
 			const response = await getOrders();
 
 			if (response.data) {
-				console.log(response);
 				setOrders(response.data);
 				setScreenState(ScreenState.DataReady);
 			}
+
+			if (response.error?.code === "ERR_BAD_REQUEST") kickout();
+
 			if (response.error) {
-				setError(response.error);
+				setError(response.error.message);
 				setScreenState(ScreenState.Error);
 			}
 		}
@@ -47,7 +52,7 @@ export const OrdersScreen = () => {
 		return (
 			<Card title="Orders">
 				{orders.map((order) => (
-					<OrderPreview order={order} />
+					<OrderPreview key={order.id} order={order} />
 				))}
 			</Card>
 		);
