@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card } from "../components/Card";
 import { useApi } from "../hooks/useApi";
-import { OrderDetails, ScreenState } from "../types";
+import { ScreenState } from "../types";
 import { CheckpointTimeline } from "../components/CheckpointTimeline";
 import { OrderEntry } from "../components/OrderEntry";
+import { OrderDetails } from "../apiTypes";
 
 export const OrderDetailsScreen = () => {
 	const { orderNumber } = useParams();
@@ -74,4 +75,6 @@ export const OrderDetailsScreen = () => {
 			</Card>
 		);
 	}
+
+	return null;
 };

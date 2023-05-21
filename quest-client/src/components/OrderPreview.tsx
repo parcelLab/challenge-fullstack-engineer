@@ -1,4 +1,4 @@
-import { Order } from "../types";
+import { Order } from "../apiTypes";
 import { Link } from "react-router-dom";
 import { OrderEntry } from "./OrderEntry";
 

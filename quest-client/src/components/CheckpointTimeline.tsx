@@ -1,4 +1,4 @@
-import { Checkpoint } from "../types";
+import { Checkpoint } from "../apiTypes";
 
 interface Props {
 	checkpoints: Checkpoint[];

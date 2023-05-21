@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useApi } from "../hooks/useApi";
-import { Order, ScreenState } from "../types";
+import { ScreenState } from "../types";
 import { Card } from "../components/Card";
 import { OrderPreview } from "../components/OrderPreview";
+import { Order } from "../apiTypes";
 
 export const OrdersScreen = () => {
 	const [screenState, setScreenState] = useState<ScreenState>(
@@ -51,4 +52,6 @@ export const OrdersScreen = () => {
 			</Card>
 		);
 	}
+
+	return null;
 };
