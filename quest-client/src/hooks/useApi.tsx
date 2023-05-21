@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { axiosInstance } from "../axiosInstance";
-import { Order, OrderDetails } from "../types";
+import { Order, OrderDetails } from "../apiTypes";
+import { JWT_LOCAL_STORAGE_KEY } from "../contants";
 
 interface Jwt {
 	access_token: string;
@@ -18,6 +19,9 @@ export const useApi = () => {
 				email,
 			});
 			const data = response.data as Jwt;
+
+			// save jtw to local storage
+			localStorage.setItem(JWT_LOCAL_STORAGE_KEY, data.access_token);
 
 			axiosInstance.defaults.headers.common[
 				"Authorization"
