@@ -32,7 +32,6 @@ function SignInScreen() {
 		const result = await signin(email.value);
 
 		if (result.error) {
-			console.log(result.error);
 			if (result.error.code === "ERR_BAD_REQUEST") {
 				setSignInError("Invalid Email");
 				return;

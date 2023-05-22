@@ -1,45 +1,41 @@
-import { Order, OrderArticle, OrderWithArticles } from "../apiTypes";
 import { Link } from "react-router-dom";
+import { OrderItem, OrderWithOrderItems } from "../apiTypes";
 import { OrderEntry } from "./OrderEntry";
 
-interface ArticlesProps {
-	articles: OrderArticle[];
+interface OrderItemProps {
+	orderItems: OrderItem[];
 }
 
-const Articles = ({ articles }: ArticlesProps) => (
+const OrderItems = ({ orderItems }: OrderItemProps) => (
 	<div className="pt-2 border-t-2">
 		<h4 className="font-bold mb-2 text-lg">Articles</h4>
 		<ul>
-			{articles.map(
-				({
-					articleImageUrl,
-					articleNumber,
-					product_name,
-					quantity,
-				}) => (
-					<li key={articleNumber} className="mb-2 flex items-center">
-						<img
-							className="w-8 mr-4"
-							src={articleImageUrl}
-							alt={product_name}
-						/>
-						<span className="bg-green-600 text-white px-2 mr-4 rounded-xl">
-							{quantity}
-						</span>
-						<span className="font-bold">{product_name}</span>
-					</li>
-				)
-			)}
+			{orderItems.map(({ quantity, article }) => (
+				<li
+					key={article.product_name}
+					className="mb-2 flex items-center"
+				>
+					<img
+						className="w-8 mr-4"
+						src={article.articleImageUrl}
+						alt={article.product_name}
+					/>
+					<span className="bg-green-600 text-white px-2 mr-4 rounded-xl">
+						{quantity}
+					</span>
+					<span className="font-bold">{article.product_name}</span>
+				</li>
+			))}
 		</ul>
 	</div>
 );
 
 interface Props {
-	order: OrderWithArticles;
+	order: OrderWithOrderItems;
 }
 
 export const OrderPreview = ({
-	order: { order_number, courier, articles, street, zip_code, city },
+	order: { order_number, courier, orderItems, street, zip_code, city },
 }: Props) => (
 	<Link to={`/order/${order_number}`}>
 		<div className="bg-white border-2 border-black mb-3 p-4 rounded-2xl hover:bg-slate-100">
@@ -51,8 +47,8 @@ export const OrderPreview = ({
 					value={`${street}\n${zip_code} ${city}`}
 				/>
 			</ul>
-			{articles.length && articles[0].articleNumber ? (
-				<Articles articles={articles} />
+			{orderItems.length && orderItems[0].quantity ? (
+				<OrderItems orderItems={orderItems} />
 			) : null}
 		</div>
 	</Link>

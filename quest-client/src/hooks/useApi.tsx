@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { axiosInstance } from "../axiosInstance";
-import { Order, OrderDetails, OrderWithArticles } from "../apiTypes";
+import { Order, OrderDetails, OrderWithOrderItems } from "../apiTypes";
 import { JWT_LOCAL_STORAGE_KEY } from "../contants";
 
 interface Jwt {
@@ -36,11 +36,11 @@ export const useApi = () => {
 		}
 	};
 
-	const getOrders = async (): Promise<ApiResponse<OrderWithArticles[]>> => {
+	const getOrders = async (): Promise<ApiResponse<OrderWithOrderItems[]>> => {
 		try {
 			const response = await axiosInstance.get("/orders");
 
-			const data = response.data;
+			const data = response.data.orders;
 
 			return { data };
 		} catch (error) {
@@ -50,11 +50,11 @@ export const useApi = () => {
 
 	const getOrderDetails = async (
 		orderNumber: string
-	): Promise<ApiResponse<OrderDetails>> => {
+	): Promise<ApiResponse<Order>> => {
 		try {
 			const response = await axiosInstance.get(`/orders/${orderNumber}`);
 
-			const data = response.data;
+			const data = response.data.order;
 
 			return { data };
 		} catch (error) {

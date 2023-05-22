@@ -3,7 +3,7 @@ import { useApi } from "../hooks/useApi";
 import { ScreenState } from "../types";
 import { Card } from "../components/Card";
 import { OrderPreview } from "../components/OrderPreview";
-import { OrderWithArticles } from "../apiTypes";
+import { OrderWithOrderItems } from "../apiTypes";
 import { useAuthorizedRoute } from "../hooks/useAuthorizedRoute";
 
 export const OrdersScreen = () => {
@@ -15,7 +15,7 @@ export const OrdersScreen = () => {
 
 	const [error, setError] = useState<string>();
 
-	const [orders, setOrders] = useState<OrderWithArticles[]>();
+	const [orders, setOrders] = useState<OrderWithOrderItems[]>();
 
 	const { getOrders } = useApi();
 

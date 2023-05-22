@@ -5,7 +5,7 @@ import { useApi } from "../hooks/useApi";
 import { ScreenState } from "../types";
 import { CheckpointTimeline } from "../components/CheckpointTimeline";
 import { OrderEntry } from "../components/OrderEntry";
-import { OrderDetails } from "../apiTypes";
+import { Order, OrderDetails } from "../apiTypes";
 import { useAuthorizedRoute } from "../hooks/useAuthorizedRoute";
 
 export const OrderDetailsScreen = () => {
@@ -18,7 +18,7 @@ export const OrderDetailsScreen = () => {
 
 	const [error, setError] = useState<string>();
 
-	const [orderDetails, setOrderDetails] = useState<OrderDetails>();
+	const [orderDetails, setOrderDetails] = useState<Order>();
 
 	const { getOrderDetails } = useApi();
 
@@ -52,11 +52,11 @@ export const OrderDetailsScreen = () => {
 	}
 
 	if (screenState === ScreenState.DataReady && orderDetails) {
-		const { order, checkpoints } = orderDetails;
+		const { orderItems, checkpoints, ...order } = orderDetails;
 		return (
 			<Card title="Order Details">
 				<div className="grid gap-4 grid-cols-2 mb-2">
-					{order.articles.map((article) => (
+					{orderItems.map(({ article }) => (
 						<div key={article.articleNumber}>
 							<img
 								src={article.articleImageUrl}
@@ -68,10 +68,6 @@ export const OrderDetailsScreen = () => {
 						</div>
 					))}
 				</div>
-				<img
-					className="d-block mx-auto mb-4"
-					src={order.articleImageUrl}
-				/>
 				<ul className="grid gap-4 grid-cols-2 mb-6">
 					<OrderEntry
 						label="Order Number"
