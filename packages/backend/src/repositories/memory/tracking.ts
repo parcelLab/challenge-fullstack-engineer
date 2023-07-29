@@ -4,7 +4,7 @@ import {
 } from '../../types/components';
 import {IGroupedTracking} from '../../types/models';
 
-export class TrackingRepository implements ITrackingRepository {
+export class MemoryTrackingRepository implements ITrackingRepository {
 
 	private readonly data: Record<string, IGroupedTracking> = {}
 
