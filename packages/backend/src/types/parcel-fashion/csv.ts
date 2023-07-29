@@ -1,16 +1,16 @@
 export interface IParcelFashionTracking {
-	order_number: number, // - the order number of one of the orders that Julian submitted
+	orderNo: string, // - the order number of one of the orders that Julian submitted
 	tracking_number: string, // - the courier tracking number that is used to ship the order to the recipient
 	courier: string, // - the name of the courier that fulfils the shipment
 	street: string, // - the street and house number of the recipient
 	zip_code: string, // - the ZIP / postal code of the recipient
 	city: string, // - the city of the recipient
 	destination_country_iso3: string, // Improvement use ENUM // - the ISO3 country code of the recipient
-	email: number, // - the email address of the recipient
-	article_no: number, // - the online shop's article number of the article that is being shipped to the recipient
-	article_image_url: string, // - a picture URL of the article
-	quantity: number, // - the quantity of the article
-	product_name: string, // - the name of the article
+	email: string, // - the email address of the recipient
+	articleNo?: string, // - the online shop's article number of the article that is being shipped to the recipient
+	articleImageUrl?: string, // - a picture URL of the article
+	quantity?: string, // - the quantity of the article
+	product_name?: string, // - the name of the article
 }
 
 export interface IParcelFashionCheckpoint {

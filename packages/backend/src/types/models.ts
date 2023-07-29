@@ -14,8 +14,8 @@ export interface ITrackingDestination {
 
 export interface ITracking {
 	id: string;
-	external_id: number;
-	tracking_id: string;
+	external_id: string;
+	tracking_number: string;
 	courier: string;
 	destination: ITrackingDestination,
 	receiver_email: string;
@@ -24,7 +24,8 @@ export interface ITracking {
 
 export interface ITrackingCheckpoint {
 	id: string;
-	tracking_external_id: string;
+	tracking_internal_id: string;
+	tracking_number: string;
 	location: string;
 	timestamp: string,
 	status: string,
