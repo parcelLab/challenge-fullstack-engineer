@@ -19,12 +19,10 @@ export class ParcelLabException extends Error {
 
 export class ParcelLabelApiException extends ParcelLabException {
 	public readonly statusCode: number;
-	public readonly sensibleException: boolean;
 
 	constructor(params: { message: string; details: string, component: string, code: ErrorCode, statusCode: number, sensible: boolean }) {
 		super(params);
 		this.statusCode = params.statusCode;
-		this.sensibleException = params.sensible;
 	}
 }
 
