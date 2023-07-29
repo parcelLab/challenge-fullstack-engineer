@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend challenge",
+  "main": "index.js",
+  "author": "alexsotocx",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev:start:importer": "nodemon src/bin/importer.ts"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/chai-as-promised": "^7.1.5",
+    "@types/sinon-chai": "^3.2.9",
+    "@types/node": "^16.18.39",
+    "@types/mocha": "^9.1.1",
+    "typescript": "^4.9.5",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "mocha": "^10.2.0",
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "sinon": "^15.2.0",
+    "sinon-chai": "^3.7.0"
+  }
+
+}
