@@ -32,3 +32,8 @@ export interface ITrackingCheckpoint {
 	status_text: string,
 	status_detail: string,
 }
+
+export interface IGroupedTracking {
+	tracking: ITracking;
+	checkpoints: ITrackingCheckpoint[];
+}

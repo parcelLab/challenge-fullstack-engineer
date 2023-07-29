@@ -1,10 +1,14 @@
-import {ICSVReader, ICSVReadResult} from '../../types/components';
+import {ICSVReader} from '../../types/components';
 import {
 	IParcelFashionCheckpoint,
 	IParcelFashionTracking
 } from '../../types/parcel-fashion/csv';
 import {readCsv} from '../../utils/read-csv';
-import {ITracking, ITrackingCheckpoint} from '../../types/models';
+import {
+	IGroupedTracking,
+	ITracking,
+	ITrackingCheckpoint
+} from '../../types/models';
 import {randomUUID} from 'crypto';
 
 const CSV_HEADERS_TRACKING = [
@@ -32,7 +36,7 @@ const CSV_HEADERS_CHECKPOINT = [
 ];
 
 export class ParcelFashionCSVReader implements ICSVReader {
-	async readCSV(params: { trackingContent: Buffer; checkpointsContent: Buffer }): Promise<ICSVReadResult[]> {
+	async readCSV(params: { trackingContent: Buffer; checkpointsContent: Buffer }): Promise<IGroupedTracking[]> {
 		const readTracking: IParcelFashionTracking[] = await readCsv(CSV_HEADERS_TRACKING, params.trackingContent);
 		const readCheckpoints: IParcelFashionCheckpoint[] = await readCsv(CSV_HEADERS_CHECKPOINT, params.checkpointsContent);
 
