@@ -1,7 +1,7 @@
 import {ParcelFashionCSVReader} from './parcel-fashion';
 import {
-	trackingFixture,
-	trackingCheckPointFixture
+	csvTrackingFixture,
+	csvTrackingCheckPointFixture
 } from '../../../test/fixtures';
 import {expect} from 'chai';
 import {ITracking, ITrackingCheckpoint} from '../../types/models';
@@ -12,8 +12,8 @@ describe('ParcelFashionCSVReader', () => {
 	describe('readCSV', () => {
 		it('gets the buffer content and transform it into tracking details', async () => {
 			const [data] = await reader.readCSV({
-				checkpointsContent: trackingCheckPointFixture,
-				trackingContent: trackingFixture,
+				checkpointsContent: csvTrackingCheckPointFixture,
+				trackingContent: csvTrackingFixture,
 			});
 
 			expect(data.tracking).to.deep.contains(<ITracking>{

@@ -30,7 +30,7 @@ export class CSVImporter {
 		} catch (e) {
 			throw new ParcelLabException({
 				message: `Error importing csv: ${e.message}`,
-				code: ErrorCode.unknown,
+				code: ErrorCode.Unknown,
 				component: 'CSVReader',
 				details: e.message,
 			})
