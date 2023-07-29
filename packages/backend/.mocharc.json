@@ -1,0 +1,7 @@
+{
+  "ui": "bdd",
+  "require": [
+    "ts-node/register"
+  ],
+  "timeout": 2000
+}

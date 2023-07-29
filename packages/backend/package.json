@@ -8,7 +8,8 @@
   "private": false,
   "scripts": {
     "build": "rm -rf build && tsc --project tsconfig.build.json",
-    "dev:start:importer": "nodemon src/bin/importer.ts"
+    "dev:start:importer": "nodemon src/bin/importer.ts",
+    "test:unit": "mocha 'src/**/*.test.ts'"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
