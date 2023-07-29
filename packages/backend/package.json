@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "build": "rm -rf build && tsc --project tsconfig.build.json",
     "dev:start:importer": "nodemon src/bin/importer.ts"
   },
   "devDependencies": {
@@ -24,5 +25,4 @@
     "sinon": "^15.2.0",
     "sinon-chai": "^3.7.0"
   }
-
 }
