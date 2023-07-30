@@ -8,5 +8,6 @@ export interface IAPIConfig {
     user: string;
     password: string;
     maxConnections?: number;
+	searchPath?: string[];
   };
 }

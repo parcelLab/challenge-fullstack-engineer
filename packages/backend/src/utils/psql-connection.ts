@@ -9,7 +9,8 @@ export function createKnexPgConnection(config: IAPIConfig['psql']): Knex {
       user: config.user,
       password: config.password,
       database: config.database,
-      pool: { min: 1, max: config.maxConnections },
+      pool: { min: 1, max: config.maxConnections  },
     },
+	  searchPath: config.searchPath,
   });
 }

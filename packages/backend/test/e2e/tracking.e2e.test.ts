@@ -14,8 +14,6 @@ describe("/v1/trackings", () => {
 
 	before(async() => {
 		db = await initializeDb('e2e_trackings');
-		repository = new SQLTRackingRepository(db);
-		httpClient = createTestRoute(createTrackingRoute(repository))
 	});
 
 	after(async() => db.destroy());
@@ -23,6 +21,8 @@ describe("/v1/trackings", () => {
 	describe('GET /', () => {
 		it('gets the with the email', async() => {
 			await executeWithTransaction(db, async(client: Knex.Transaction) => {
+				repository = new SQLTRackingRepository(client);
+				httpClient = createTestRoute(createTrackingRoute(repository));
 				await client('trackings').insert(trackingFixture);
 				await client('tracking_checkpoints').insert(checkpointFixture);
 
@@ -42,6 +42,8 @@ describe("/v1/trackings", () => {
 	describe('GET /:id', () => {
 		it('gets the with the id', async() => {
 			await executeWithTransaction(db, async(client: Knex.Transaction) => {
+				repository = new SQLTRackingRepository(client);
+				httpClient = createTestRoute(createTrackingRoute(repository));
 				await client('trackings').insert(trackingFixture);
 				await client('tracking_checkpoints').insert(checkpointFixture);
 

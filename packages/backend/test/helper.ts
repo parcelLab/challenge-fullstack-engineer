@@ -12,12 +12,12 @@ export async function initializeDb(namespace: string): Promise<Knex<any, any[]>>
 		user: process.env.DB_TEST_USER ?? 'root',
 		password: process.env.DB_TEST_PASSWORD ?? 'changeme',
 		maxConnections: 1,
+		searchPath: [namespace, 'public']
 	});
 
 	await db.raw(`
 		DROP SCHEMA IF EXISTS ${namespace} CASCADE;
 		CREATE SCHEMA ${namespace};
-		SET search_path = ${namespace},public;
 		---
 		${schema.toString()}
 	`)
