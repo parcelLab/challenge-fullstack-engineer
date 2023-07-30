@@ -5,6 +5,7 @@ import {
 	ParcelLabException
 } from '../exceptions/exceptions';
 import * as fs from 'fs';
+import {logger} from '../utils/logger';
 
 export class CSVImporter {
 	constructor(private readonly csvReaders: Record<string, ICSVReader>, private readonly trackingRepository: ITrackingRepository) {
@@ -28,7 +29,7 @@ export class CSVImporter {
 
 			await this.trackingRepository.save(data);
 		} catch (e) {
-			console.error(e);
+			logger.error(e);
 			throw new ParcelLabException({
 				message: `Error importing csv: ${e.message}`,
 				code: ErrorCode.Unknown,

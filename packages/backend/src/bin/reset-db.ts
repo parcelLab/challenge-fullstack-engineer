@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import {createKnexPgConnection} from '../utils/psql-connection';
 import knex from 'knex';
+import {logger} from '../utils/logger';
 
 export async function resetDb() {
 	const schema = await fs.promises.readFile('src/db/schema.sql');
@@ -12,10 +13,10 @@ export async function resetDb() {
 		database: 'parcel_lab_dev'
 	});
 
-	console.log('Resetting db');
+	logger.info('Resetting db');
 
 	await connection.raw(schema.toString(), []);
-	console.log('DB finished');
+	logger.info('DB finished');
 
 	await connection.destroy();
 }

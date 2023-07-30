@@ -10,6 +10,7 @@ import {
 	ITrackingCheckpoint
 } from '../../types/models';
 import {randomUUID} from 'crypto';
+import {logger} from '../../utils/logger';
 
 const CSV_HEADERS_TRACKING = [
 	'orderNo',
@@ -54,7 +55,7 @@ export class ParcelFashionCSVReader implements ICSVReader {
 			const tracking = groupedTracking[detail.tracking_number];
 
 			if (!tracking) {
-				console.warn('Missing tracking, skipping', detail.tracking_number);
+				logger.warn('Missing tracking, skipping', detail.tracking_number);
 			} else {
 				const checkpoint = this.convertTrackingCheckPoint(detail, tracking.id);
 				map[detail.tracking_number] = map[detail.tracking_number] || [];

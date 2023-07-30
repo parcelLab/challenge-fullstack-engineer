@@ -1,5 +1,6 @@
 import {Handler, Request, Response} from 'express';
 import {ParcelLabelApiException} from '../exceptions/exceptions';
+import {logger} from './logger';
 
 export function handleError(error: Error, res: Response) {
 	if (error instanceof ParcelLabelApiException) {
@@ -15,6 +16,7 @@ export function handleError(error: Error, res: Response) {
 			message: 'Server error',
 		})
 	}
+	logger.error(error);
 }
 
 export function safeJSONResponse(cb: (req: Request) => Promise<unknown>): Handler {

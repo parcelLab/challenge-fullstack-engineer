@@ -13,6 +13,8 @@ export function startAPI(): void {
 		}
 	}
 
+	// TODO use abstract factory to create repositories
+
 	const api = new Api(config);
 
 	api.start();

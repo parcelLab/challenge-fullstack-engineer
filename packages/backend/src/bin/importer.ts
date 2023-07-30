@@ -4,6 +4,7 @@ import {ParcelFashionCSVReader} from '../csv-importer/readers/parcel-fashion';
 import {SQLTRackingRepository} from '../db/repositories/sql/tracking';
 import {IAPIConfig} from '../types/config';
 import {createKnexPgConnection} from '../utils/psql-connection';
+import {logger} from '../utils/logger';
 
 export async function importCSV() {
 	// Todo read variables from CLI
@@ -29,7 +30,7 @@ export async function importCSV() {
 		fileTrackingPath: trackingPath,
 	})
 
-	console.log('Data imported', JSON.stringify(await repository.getTracking({}), null, 2));
+	logger.info('Data imported', { data: await repository.getTracking({})});
 	await connection.destroy();
 }
 
