@@ -28,6 +28,7 @@ export class CSVImporter {
 
 			await this.trackingRepository.save(data);
 		} catch (e) {
+			console.error(e);
 			throw new ParcelLabException({
 				message: `Error importing csv: ${e.message}`,
 				code: ErrorCode.Unknown,

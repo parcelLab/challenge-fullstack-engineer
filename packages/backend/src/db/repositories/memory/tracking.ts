@@ -1,8 +1,8 @@
 import {
 	ITrackingFilterOptions,
 	ITrackingRepository
-} from '../../types/components';
-import {IGroupedTracking} from '../../types/models';
+} from '../../../types/components';
+import {IGroupedTracking} from '../../../types/models';
 
 export class MemoryTrackingRepository implements ITrackingRepository {
 

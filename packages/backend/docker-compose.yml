@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: on-failure
+    #   UnComment if you want to have persistent storage - Docker storage is too slow
+    #    volumes:
+    #      - ./docker/postgres/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: parcel_lab_dev
+    ports:
+      - "5432:5432"
