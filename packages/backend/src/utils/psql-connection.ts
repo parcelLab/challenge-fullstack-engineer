@@ -1,9 +1,9 @@
-import { IAPIConfig } from "../types/config";
-import knex, { Knex } from "knex";
+import { IAPIConfig } from '../types/config';
+import knex, { Knex } from 'knex';
 
-export function createKnexPgConnection(config: IAPIConfig["psql"]): Knex {
+export function createKnexPgConnection(config: IAPIConfig['psql']): Knex {
   return knex({
-    client: "pg",
+    client: 'pg',
     connection: {
       port: config.port,
       user: config.user,

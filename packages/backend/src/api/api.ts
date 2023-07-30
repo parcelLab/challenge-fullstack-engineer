@@ -1,10 +1,10 @@
-import { IAPIConfig } from "../types/config";
+import { IAPIConfig } from '../types/config';
 
-import express from "express";
-import { createTrackingRoute } from "./routes/tracking";
-import { SQLTRackingRepository } from "../db/repositories/sql/tracking";
-import { createKnexPgConnection } from "../utils/psql-connection";
-import { logger } from "../utils/logger";
+import express from 'express';
+import { createTrackingRoute } from './routes/tracking';
+import { SQLTRackingRepository } from '../db/repositories/sql/tracking';
+import { createKnexPgConnection } from '../utils/psql-connection';
+import { logger } from '../utils/logger';
 export class Api {
   constructor(private readonly config: IAPIConfig) {}
 
@@ -15,8 +15,8 @@ export class Api {
 
     expressApp.use(createTrackingRoute(repository));
 
-    expressApp.listen(this.config.http.port, "127.0.0.1", () => {
-      logger.info("Listening in port", { port: this.config.http.port });
+    expressApp.listen(this.config.http.port, '127.0.0.1', () => {
+      logger.info('Listening in port', { port: this.config.http.port });
     });
   }
 }

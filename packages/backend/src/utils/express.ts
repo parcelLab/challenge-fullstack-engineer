@@ -1,6 +1,6 @@
-import { Handler, Request, Response } from "express";
-import { ParcelLabelApiException } from "../exceptions/exceptions";
-import { logger } from "./logger";
+import { Handler, Request, Response } from 'express';
+import { ParcelLabelApiException } from '../exceptions/exceptions';
+import { logger } from './logger';
 
 export function handleError(error: Error, res: Response) {
   if (error instanceof ParcelLabelApiException) {
@@ -12,16 +12,14 @@ export function handleError(error: Error, res: Response) {
   } else {
     res.status(500).json({
       error: true,
-      error_code: "500",
-      message: "Server error",
+      error_code: '500',
+      message: 'Server error',
     });
   }
   logger.error(error);
 }
 
-export function safeJSONResponse(
-  cb: (req: Request) => Promise<unknown>,
-): Handler {
+export function safeJSONResponse(cb: (req: Request) => Promise<unknown>): Handler {
   return async (req, res) => {
     try {
       const data = await cb(req);

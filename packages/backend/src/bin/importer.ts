@@ -1,19 +1,19 @@
-import { CSVImporter } from "../csv-importer/importer";
-import { ParcelFashionCSVReader } from "../csv-importer/readers/parcel-fashion";
-import { SQLTRackingRepository } from "../db/repositories/sql/tracking";
-import { IAPIConfig } from "../types/config";
-import { createKnexPgConnection } from "../utils/psql-connection";
-import { logger } from "../utils/logger";
+import { CSVImporter } from '../csv-importer/importer';
+import { ParcelFashionCSVReader } from '../csv-importer/readers/parcel-fashion';
+import { SQLTRackingRepository } from '../db/repositories/sql/tracking';
+import { IAPIConfig } from '../types/config';
+import { createKnexPgConnection } from '../utils/psql-connection';
+import { logger } from '../utils/logger';
 
 export async function importCSV() {
   // Todo read variables from CLI
-  const trackingPath = "data/trackings.csv";
-  const checkpointsPath = "data/checkpoints.csv";
-  const psqlConfig: IAPIConfig["psql"] = {
-    user: "root",
-    password: "changeme",
+  const trackingPath = 'data/trackings.csv';
+  const checkpointsPath = 'data/checkpoints.csv';
+  const psqlConfig: IAPIConfig['psql'] = {
+    user: 'root',
+    password: 'changeme',
     port: 5432,
-    database: "parcel_lab_dev",
+    database: 'parcel_lab_dev',
   };
 
   const connection = createKnexPgConnection(psqlConfig);
@@ -28,11 +28,11 @@ export async function importCSV() {
 
   await importer.importCSV({
     fileCheckpointsPath: checkpointsPath,
-    importerType: "parcel_fashion",
+    importerType: 'parcel_fashion',
     fileTrackingPath: trackingPath,
   });
 
-  logger.info("Data imported", { data: await repository.getTracking({}) });
+  logger.info('Data imported', { data: await repository.getTracking({}) });
   await connection.destroy();
 }
 

@@ -1,15 +1,12 @@
-import { finished } from "stream/promises";
-import { parse } from "csv-parse";
-import { Readable } from "stream";
+import { finished } from 'stream/promises';
+import { parse } from 'csv-parse';
+import { Readable } from 'stream';
 
-export async function readCsv<T>(
-  headers: string[],
-  content: Buffer,
-): Promise<T[]> {
+export async function readCsv<T>(headers: string[], content: Buffer): Promise<T[]> {
   const records: T[] = [];
   const parser = Readable.from(content).pipe(
     parse({
-      delimiter: ";",
+      delimiter: ';',
       columns: headers,
       ignore_last_delimiters: true,
       from_line: 2,
@@ -17,7 +14,7 @@ export async function readCsv<T>(
     }),
   );
 
-  parser.on("readable", function () {
+  parser.on('readable', function () {
     let record;
     while ((record = parser.read()) !== null) {
       records.push(record);

@@ -12,4 +12,7 @@ module.exports = {
 		'plugin:import/recommended',
 		'plugin:import/typescript',
 	],
+	rules: {
+		"quote-props": [1, "as-needed"]
+	}
 };

@@ -1,60 +1,37 @@
-import { ICSVReader } from "../../types/components";
-import {
-  IParcelFashionCheckpoint,
-  IParcelFashionTracking,
-} from "../../types/parcel-fashion/csv";
-import { readCsv } from "../../utils/read-csv";
-import {
-  IGroupedTracking,
-  ITracking,
-  ITrackingCheckpoint,
-} from "../../types/models";
-import { randomUUID } from "crypto";
-import { logger } from "../../utils/logger";
+import { ICSVReader } from '../../types/components';
+import { IParcelFashionCheckpoint, IParcelFashionTracking } from '../../types/parcel-fashion/csv';
+import { readCsv } from '../../utils/read-csv';
+import { IGroupedTracking, ITracking, ITrackingCheckpoint } from '../../types/models';
+import { randomUUID } from 'crypto';
+import { logger } from '../../utils/logger';
 
 const CSV_HEADERS_TRACKING = [
-  "orderNo",
-  "tracking_number",
-  "courier",
-  "street",
-  "zip_code",
-  "city",
-  "destination_country_iso3",
-  "email",
-  "articleNo",
-  "articleImageUrl",
-  "quantity",
-  "product_name",
+  'orderNo',
+  'tracking_number',
+  'courier',
+  'street',
+  'zip_code',
+  'city',
+  'destination_country_iso3',
+  'email',
+  'articleNo',
+  'articleImageUrl',
+  'quantity',
+  'product_name',
 ];
 
-const CSV_HEADERS_CHECKPOINT = [
-  "tracking_number",
-  "location",
-  "timestamp",
-  "status",
-  "status_text",
-  "status_detail",
-];
+const CSV_HEADERS_CHECKPOINT = ['tracking_number', 'location', 'timestamp', 'status', 'status_text', 'status_detail'];
 
 export class ParcelFashionCSVReader implements ICSVReader {
-  async readCSV(params: {
-    trackingContent: Buffer;
-    checkpointsContent: Buffer;
-  }): Promise<IGroupedTracking[]> {
-    const readTracking: IParcelFashionTracking[] = await readCsv(
-      CSV_HEADERS_TRACKING,
-      params.trackingContent,
-    );
+  async readCSV(params: { trackingContent: Buffer; checkpointsContent: Buffer }): Promise<IGroupedTracking[]> {
+    const readTracking: IParcelFashionTracking[] = await readCsv(CSV_HEADERS_TRACKING, params.trackingContent);
     const readCheckpoints: IParcelFashionCheckpoint[] = await readCsv(
       CSV_HEADERS_CHECKPOINT,
       params.checkpointsContent,
     );
 
     const groupedTracking = this.groupTracking(readTracking);
-    const groupedCheckpoints = this.groupCheckpointsByTracking(
-      readCheckpoints,
-      groupedTracking,
-    );
+    const groupedCheckpoints = this.groupCheckpointsByTracking(readCheckpoints, groupedTracking);
 
     return Object.values(groupedTracking).map((tracking) => ({
       tracking,
@@ -71,12 +48,9 @@ export class ParcelFashionCSVReader implements ICSVReader {
         const tracking = groupedTracking[detail.tracking_number];
 
         if (!tracking) {
-          logger.warn("Missing tracking, skipping", detail.tracking_number);
+          logger.warn('Missing tracking, skipping', detail.tracking_number);
         } else {
-          const checkpoint = this.convertTrackingCheckPoint(
-            detail,
-            tracking.id,
-          );
+          const checkpoint = this.convertTrackingCheckPoint(detail, tracking.id);
           map[detail.tracking_number] = map[detail.tracking_number] || [];
           map[detail.tracking_number].push(checkpoint);
         }
@@ -87,9 +61,7 @@ export class ParcelFashionCSVReader implements ICSVReader {
     );
   }
 
-  private groupTracking(
-    tracking: IParcelFashionTracking[],
-  ): Record<string, ITracking> {
+  private groupTracking(tracking: IParcelFashionTracking[]): Record<string, ITracking> {
     return tracking.reduce(
       (map, item) => {
         const data = this.convertTrackingToModel(item);

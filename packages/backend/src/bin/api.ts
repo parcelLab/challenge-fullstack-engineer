@@ -1,15 +1,15 @@
-import { IAPIConfig } from "../types/config";
-import { Api } from "../api/api";
+import { IAPIConfig } from '../types/config';
+import { Api } from '../api/api';
 
 export function startAPI(): void {
   // TODO read config from ENV
   const config: IAPIConfig = {
     http: { port: 8000 },
     psql: {
-      user: "root",
-      password: "changeme",
+      user: 'root',
+      password: 'changeme',
       port: 5432,
-      database: "parcel_lab_dev",
+      database: 'parcel_lab_dev',
     },
   };
 

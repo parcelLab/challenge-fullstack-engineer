@@ -1,7 +1,7 @@
 export enum ErrorCode {
-  InvalidReader = "invalid_reader",
-  Unknown = "unknown",
-  NotFound = "not_found",
+  InvalidReader = 'invalid_reader',
+  Unknown = 'unknown',
+  NotFound = 'not_found',
 }
 
 export class ParcelLabException extends Error {
@@ -9,12 +9,7 @@ export class ParcelLabException extends Error {
   public readonly component: string;
   public readonly code: ErrorCode;
 
-  constructor(params: {
-    message: string;
-    details: string;
-    component: string;
-    code: ErrorCode;
-  }) {
+  constructor(params: { message: string; details: string; component: string; code: ErrorCode }) {
     super(params.message);
     this.code = params.code;
     this.component = params.component;
@@ -44,7 +39,7 @@ export class TrackingNotFoundException extends ParcelLabelApiException {
       details: id,
       sensible: false,
       statusCode: 404,
-      component: "TrackingHandler",
+      component: 'TrackingHandler',
       code: ErrorCode.NotFound,
       message: `Tracking with id ${id} not found`,
     });
@@ -55,7 +50,7 @@ export class InvalidReaderException extends ParcelLabException {
   constructor(private readonly reader: string) {
     super({
       details: reader,
-      component: "CSVReader",
+      component: 'CSVReader',
       code: ErrorCode.InvalidReader,
       message: `Invalid Reader`,
     });

@@ -1,11 +1,7 @@
-import { ICSVReader, ITrackingRepository } from "../types/components";
-import {
-  ErrorCode,
-  InvalidReaderException,
-  ParcelLabException,
-} from "../exceptions/exceptions";
-import * as fs from "fs";
-import { logger } from "../utils/logger";
+import { ICSVReader, ITrackingRepository } from '../types/components';
+import { ErrorCode, InvalidReaderException, ParcelLabException } from '../exceptions/exceptions';
+import * as fs from 'fs';
+import { logger } from '../utils/logger';
 
 export class CSVImporter {
   constructor(
@@ -14,7 +10,7 @@ export class CSVImporter {
   ) {}
 
   async importCSV(params: {
-    importerType: "parcel_fashion" | string;
+    importerType: 'parcel_fashion' | string;
     fileTrackingPath: string;
     fileCheckpointsPath: string;
   }): Promise<void> {
@@ -25,9 +21,7 @@ export class CSVImporter {
 
     try {
       const data = await reader.readCSV({
-        checkpointsContent: await fs.promises.readFile(
-          params.fileCheckpointsPath,
-        ),
+        checkpointsContent: await fs.promises.readFile(params.fileCheckpointsPath),
         trackingContent: await fs.promises.readFile(params.fileTrackingPath),
       });
 
@@ -37,7 +31,7 @@ export class CSVImporter {
       throw new ParcelLabException({
         message: `Error importing csv: ${e.message}`,
         code: ErrorCode.Unknown,
-        component: "CSVReader",
+        component: 'CSVReader',
         details: e.message,
       });
     }

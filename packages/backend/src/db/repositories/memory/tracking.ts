@@ -1,8 +1,5 @@
-import {
-  ITrackingFilterOptions,
-  ITrackingRepository,
-} from "../../../types/components";
-import { IGroupedTracking } from "../../../types/models";
+import { ITrackingFilterOptions, ITrackingRepository } from '../../../types/components';
+import { IGroupedTracking } from '../../../types/models';
 
 export class MemoryTrackingRepository implements ITrackingRepository {
   private readonly data: Record<string, IGroupedTracking> = {};
@@ -23,9 +20,7 @@ export class MemoryTrackingRepository implements ITrackingRepository {
     if (filters.email) {
       filteredData = filters.email.reduce(
         (res, email) => {
-          const groupedTracking = Object.values(filteredData).find(
-            (t) => t.tracking.receiver_email === email,
-          );
+          const groupedTracking = Object.values(filteredData).find((t) => t.tracking.receiver_email === email);
           if (groupedTracking) {
             res[groupedTracking.tracking.id] = groupedTracking;
           }

@@ -4,5 +4,8 @@ module.exports = {
 	bracketSameLine: true,
 	endOfLine: "lf",
 	useTabs: false,
-	tabWidth: 2
+	tabWidth: 2,
+	singleQuote: true,
+	quoteProps: "consistent",
+	printWidth: 120,
 }

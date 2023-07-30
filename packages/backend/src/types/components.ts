@@ -1,11 +1,8 @@
-import { IGroupedTracking } from "./models";
-import * as Buffer from "buffer";
+import { IGroupedTracking } from './models';
+import * as Buffer from 'buffer';
 
 export interface ICSVReader {
-  readCSV(params: {
-    trackingContent: Buffer;
-    checkpointsContent: Buffer;
-  }): Promise<IGroupedTracking[]>;
+  readCSV(params: { trackingContent: Buffer; checkpointsContent: Buffer }): Promise<IGroupedTracking[]>;
 }
 
 export interface ITrackingFilterOptions {

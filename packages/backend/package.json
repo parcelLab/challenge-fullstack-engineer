@@ -12,6 +12,7 @@
     "dev:start:importer": "docker compose up -d postgres && LOG_LEVEL=debug  ts-node src/bin/importer.ts",
     "dev:start:api": "docker compose up -d postgres && LOG_LEVEL=debug nodemon src/bin/api.ts",
     "test:unit": "LOG_LEVEL=debug mocha 'src/**/*.test.ts'",
+    "test:e2e": "TZ=UTC LOG_LEVEL=debug mocha 'test/e2e/**/*.test.ts'",
     "db:reset": "docker compose down && docker compose up --force-recreate -d -V postgres && LOG_LEVEL=debug sleep 1 && ts-node src/bin/reset-db.ts"
   },
   "devDependencies": {
@@ -22,6 +23,7 @@
     "@types/node": "^16.18.39",
     "@types/pg": "^8.10.2",
     "@types/sinon-chai": "^3.2.9",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "chai": "^4.3.7",
@@ -34,6 +36,7 @@
     "prettier": "^3.0.0",
     "sinon": "^15.2.0",
     "sinon-chai": "^3.7.0",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   },
