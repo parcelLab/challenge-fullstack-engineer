@@ -1,6 +1,7 @@
 import { IAPIConfig } from '../types/config';
 
 import express from 'express';
+import cors from 'cors';
 import { createTrackingRoute } from './routes/tracking';
 import { SQLTRackingRepository } from '../db/repositories/sql/tracking';
 import { createKnexPgConnection } from '../utils/psql-connection';
@@ -13,6 +14,9 @@ export class Api {
     const repository = new SQLTRackingRepository(psqlConnection);
     const expressApp = express();
 
+	expressApp.use(cors({
+		origin: new RegExp(/.*/),
+	}));
     expressApp.use(createTrackingRoute(repository));
 
     expressApp.listen(this.config.http.port, '127.0.0.1', () => {

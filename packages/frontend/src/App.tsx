@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import {Login} from './screens/Login';
+import {
+	createBrowserRouter,
+	RouterProvider,
+} from "react-router-dom";
+import {UserTracking} from './screens/UserTracking';
+import {loadersUserTrackings, loadTrackingById} from './loaders/loaders';
+import {DetailedTracking} from './screens/DetailedTracking';
+
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Login/>,
+	},
+	{
+		path: '/trackings',
+		element: <UserTracking/>,
+		loader: loadersUserTrackings,
+	},
+	{
+		path: '/trackings/:id',
+		element: <DetailedTracking/>,
+		loader: loadTrackingById
+	}
+]);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+		<RouterProvider router={router} />
     </div>
   );
 }
