@@ -10,6 +10,8 @@ Take your time and read this Markdown parchment carefully, it will help you on y
 This repository is separated in both backend and frontend `packages/backend` and `packages/frontend`, 
 each one has it own readme.
 
+There you can find how to run each project. Just take into consideration that the frontend uses the backend for it's requests.
+
 ## Scenario
 At parcelLab we integrate with a variety of online retailers and shipping providers. One of the more common tasks for us is to process those different data sources, analyse and combine them and serve them to one our users in a human readable and convenient way.
 
