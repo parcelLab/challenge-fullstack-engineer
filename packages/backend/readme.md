@@ -36,4 +36,5 @@ After importing the data, you can start the API, using `yarn dev:start:api`
 * Add internal checkpoint status, I don't know well the domain so I decided to keep it simple
 * Use abstract factory for repositories
 * Add request validations with JOI
+* Add authentication
 * Use swagger
