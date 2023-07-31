@@ -9,6 +9,7 @@
   "scripts": {
     "build": "rm -rf build && tsc --project tsconfig.build.json",
     "lint": "prettier 'src/**/*.ts' --config .prettierrc.js --write && eslint './**/*.ts' --fix",
+    "start:api": "node --enable-source-maps ./build/src/bin/api.js",
     "dev:start:importer": "docker compose up -d postgres && LOG_LEVEL=debug  ts-node src/bin/importer.ts",
     "dev:start:api": "docker compose up -d postgres && LOG_LEVEL=debug nodemon src/bin/api.ts",
     "test:unit": "LOG_LEVEL=debug mocha 'src/**/*.test.ts'",
