@@ -1,0 +1,45 @@
+{
+  "name": "challenge-fullstack-engineer",
+  "description": "![header img](./img/5cg1mm.jpg) Welcome to the lost Fullstack Engineer Repository. You've probably come a long way - join me around the campfire, make yourself a coffee and take a break - before you start your quest.   Take your time and read this Markdown parchment carefully, it will help you on your mission to become a Fullstack Engineer at parcelLab.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "mocha -r ts-node/register src/**/*.test.ts",
+    "start": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/server.ts",
+    "build": "tsc",
+    "serve": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rehmat123/challenge-fullstack-engineer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rehmat123/challenge-fullstack-engineer/issues"
+  },
+  "homepage": "https://github.com/rehmat123/challenge-fullstack-engineer#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "papaparse": "^5.4.1",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.6",
+    "@types/express": "^4.17.18",
+    "@types/lodash": "^4.14.199",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "^20.8.2",
+    "@types/papaparse": "^5.3.9",
+    "@types/sinon": "^10.0.19",
+    "@types/validator": "^13.11.2",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.1",
+    "sinon": "^16.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
