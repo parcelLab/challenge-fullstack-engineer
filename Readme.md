@@ -1,4 +1,25 @@
 # parcelLab Fullstack Engineer Quest
+
+To run this project run `npm install` in base repo and in orders-app 
+
+than first run `npm run start` in base repo , than go to orders-app and run `npm start`
+
+backed will start at localhost:3000
+
+frontend will start on any other port
+
+I have added Unit test case for backend which can be run using `npm run test:unit`
+
+I have added Functional test case for backend which can be run using `npm run test:functional`
+
+i have created only one backend endpoint http://localhost:3000/api/orders/julian@parcellab.com
+
+it will fetch all orders with tracking , if multiple same order , i have group it by order number so that we get all articles of order in same object
+
+![header img](./img/screen1.png)
+![header img](./img/screen2.png)
+![header img](./img/screen3.png)
+
 ![header img](./img/5cg1mm.jpg)
 Welcome to the lost Fullstack Engineer Repository.
 You've probably come a long way - join me around the campfire, make yourself a coffee and take a break - before you start your quest.  

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:unit": "mocha -r ts-node/register src/**/*.test.ts",
+    "test:functional": "mocha -r ts-node/register tests/functional-tests/*.test.ts",
     "start": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/server.ts",
     "build": "tsc",
     "serve": "node dist/server.js"
@@ -21,6 +22,9 @@
   },
   "homepage": "https://github.com/rehmat123/challenge-fullstack-engineer#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "axios": "^1.5.1",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "lodash": "^4.17.21",
     "papaparse": "^5.4.1",
